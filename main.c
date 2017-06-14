@@ -34,33 +34,82 @@ struct RP6_settings
     uint8_t block;
     uint8_t complete;
     uint8_t warning;
-} rp6_set;
-
-void bumpersStateChanged(void)
-{
-    if(bumper_left)
-    rotate(50, LEFT, 180, true);
-
-    if(bumper_right)
-    rotate(50, RIGHT, 180, true);
 }
+rp6_set;
+
+uint8_t move_state = rp6_state.IDLE;
+
+void move_stateMachine(void)
+{
+	switch( )
+	{
+		case STATE_START:
+			setLEDs(0b010000);
+			move_state = STATE_WAIT_FOR_BUMPER_HIT_LEFT;
+		break;
+
+		case STATE_WAIT_FOR_BUMPER_HIT_LEFT:
+			if(getStopwatch1() > 500)
+			{
+				statusLEDs.LED5 = !statusLEDs.LED5;
+				updateStatusLEDs();
+				setStopwatch1(0);
+			}
+			if(bumper_left)
+			{
+				setLEDs(0b011001);
+				move(50, BWD, DIST_MM(150), NON_BLOCKING);
+				move_state = STATE_MOVE_BACKWARDS;
+			}
+		break;
+		case STATE_MOVE_BACKWARDS:
+			if(isMovementComplete())
+			{
+				setLEDs(0b000010);
+				move_state = STATE_WAIT_FOR_BUMPER_HIT_RIGHT;
+			}
+		break;
+
+		case STATE_WAIT_FOR_BUMPER_HIT_RIGHT:
+			if(getStopwatch1() > 500)
+			{
+				statusLEDs.LED2 = !statusLEDs.LED2;
+				updateStatusLEDs();
+				setStopwatch1(0);
+			}
+			if(bumper_right)
+			{
+				setLEDs(0b100110);
+				move(50, FWD, DIST_MM(150), NON_BLOCKING);
+				move_state = STATE_MOVE_FORWARDS;
+			}
+		break;
+		case STATE_MOVE_FORWARDS:
+			if(isMovementComplete())
+				move_state = STATE_START;
+		break;
+	}
+}
+
 
 
 
 int main(void)
 {
-    initRobotBase();
+	initRobotBase();
+	setLEDs(0b111111);
+	mSleep(1000);
 
-    mSleep(1500);
+	powerON();
 
-    powerON(); // Encoder und Motorstromsensoren anschalten!
+	startStopwatch1();
 
-    while(1)
-    {
-        BUMPERS_setStateChangedHandler(bumpersStateChanged);
-    }
-
-    return 0;
+	while(true)
+	{
+		move_stateMachine();
+		task_RP6System();
+	}
+	return 0;
 }
 
 
