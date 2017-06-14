@@ -29,14 +29,16 @@ enum state_model
 
 void bumperActive(void)
 {
+    destination = destination-(mleft_dist+mright_dist)/2;
+
     if (bumper_left)
     {
-        stop();
+        //stop();
         state = BUMPER_LEFT;
     }
     if (bumper_right)
     {
-        stop();
+        //stop();
         state = BUMPER_RIGHT;
     }
 }
@@ -50,34 +52,43 @@ void stateModel(void)
 		break;
 
 		case MOVE_TO_DESTINATION:
-             move(200, FWD, DIST_MM(destination),true);
 
-            if(isMovementComplete())
-			{
-                state = IDLE;
-			}
+             move(1000, FWD, DIST_MM(destination),true);
+             if(isMovementComplete())
+            {
+                state=IDLE;
+            }
+
         break;
 
 		case BUMPER_LEFT:
-		    do{
-            move(150, BWD, DIST_CM(10), true);
+            move(150, BWD, DIST_MM(200), true);
+            stop();
             rotate(150, RIGHT, 90, true); // um 180° nach links drehen
-            move(150, FWD, DIST_CM(10), true);
+            stop();
+            move(150, FWD, DIST_MM(200), true);
+            stop();
             rotate(150, LEFT, 90, true); // um 180° nach links drehen
             stop();
-		    }
-		    while(isMovementComplete()!=1);
+            if(isMovementComplete())
+            {
+                state=MOVE_TO_DESTINATION;
+            }
 		break;
 
         case BUMPER_RIGHT:
-            do{
-            move(150, BWD, DIST_CM(10), true);
+            move(150, BWD, DIST_MM(200), true);
+            stop();
             rotate(150, LEFT, 90, true); // um 180° nach links drehen
-            move(150, FWD, DIST_CM(10), true);
+            stop();
+            move(150, FWD, DIST_MM(200), true);
+            stop();
             rotate(150, RIGHT, 90, true); // um 180° nach links drehen
             stop();
+            if(isMovementComplete())
+            {
+                state=MOVE_TO_DESTINATION;
             }
-            while(isMovementComplete()!=1);
 		break;
 
 	}
@@ -92,13 +103,13 @@ int main(void)
     state = MOVE_TO_DESTINATION;
 
 
-	BUMPERS_setStateChangedHandler(bumperActive);
+
 	while(true)
 	{
+	    BUMPERS_setStateChangedHandler(bumperActive);
 		stateModel();
 		task_RP6System();
-		if(isMovementComplete()==1&&state!=IDLE)
-            state = MOVE_TO_DESTINATION;
+
 	}
 	return 0;
 }
