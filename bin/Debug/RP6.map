@@ -238,7 +238,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x38ca
+.text           0x00000000     0x3910
  *(.vectors)
  .vectors       0x00000000       0x54 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -309,140 +309,140 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x0000024c                __vector_16
                 0x0000024c                __vector_18
                 0x0000024c                __vector_20
- .text          0x00000250      0x18a obj\Debug\main.o
+ .text          0x00000250      0x1d0 obj\Debug\main.o
                 0x00000250                bumperActive
-                0x00000286                stateModel
-                0x000003a4                main
- .text          0x000003da     0x22f0 obj\Debug\RP6Lib\RP6base\RP6RobotBaseLib.o
-                0x000003da                enablePowerOnWarning
-                0x000024a4                mSleep
-                0x0000088a                __vector_1
-                0x0000146e                setMotorPower
-                0x000005bc                getBumperRight
-                0x00000922                MOTIONCONTROL_stateChanged_DUMMY
-                0x0000178a                IRCOMM_RC5dataReady_DUMMY
-                0x0000106a                moveAtSpeedDirection
-                0x000003f4                disablePowerOnWarning
-                0x0000053c                setLEDs
-                0x0000131e                rotate
-                0x000014b6                setMotorDir
-                0x00002524                extIntON
-                0x00001ecc                powerOFF
-                0x00002482                sleep
-                0x00001706                __vector_3
-                0x00000408                updateStatusLEDs
-                0x0000152e                IRCOMM_sendRC5
-                0x000024e6                delayCycles
-                0x00001cc8                disableACS
-                0x0000062c                BUMPERS_setStateChangedHandler
-                0x00001e16                setACSPwrMed
-                0x000017a2                IRCOMM_setRC5DataReadyHandler
-                0x000017d4                ACS_setStateChangedHandler
-                0x000006a6                readADC
-                0x00001188                move
-                0x0000055a                getBumperLeft
-                0x000017f8                task_ACS
-                0x00000fbc                moveAtSpeed
-                0x00001004                changeDirection
-                0x00001e5c                setACSPwrHigh
-                0x00001d6e                setACSPwrOff
-                0x00001dd0                setACSPwrLow
-                0x00000954                emergencyShutdown
-                0x00000650                task_Bumpers
-                0x00002578                task_RP6System
-                0x000017c6                ACS_stateChanged_DUMMY
-                0x0000159e                __vector_4
-                0x00001d1a                enableACS
-                0x000008d6                __vector_2
-                0x0000254e                extIntOFF
-                0x0000071a                startADC
-                0x00001ea2                powerON
-                0x00000930                MOTIONCONTROL_setStateChangedHandler
-                0x00000a70                task_motionControl
-                0x00002596                initRobotBase
-                0x0000061e                BUMPERS_stateChanged_DUMMY
-                0x00001f1a                __vector_10
-                0x00001134                stop
-                0x000010fc                isMovementComplete
-                0x00000740                task_ADC
- .text          0x000026ca      0x200 obj\Debug\RP6Lib\RP6common\RP6I2CslaveTWI.o
-                0x00002702                __vector_19
-                0x000026ca                I2CTWI_initSlave
- .text          0x000028ca      0x3be obj\Debug\RP6Lib\RP6common\RP6uart.o
-                0x00002b48                readChar
-                0x00002ba0                readChars
-                0x00002c24                getBufferLength
-                0x00002c40                clearReceptionBuffer
-                0x000028f8                writeString
-                0x00002a2e                writeIntegerLength
-                0x00002ab8                __vector_13
-                0x000029e4                writeInteger
-                0x000028ca                writeChar
-                0x00002982                writeStringLength
-                0x00002932                writeNStringP
- .text          0x00002c88        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
- .text          0x00002c88        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
- .text          0x00002c88        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
- .text          0x00002c88        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text          0x00002c88        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text          0x00002c88        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text          0x00002c88       0x58 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
-                0x00002c88                __fixunssfsi
- .text          0x00002ce0      0x354 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_addsub_sf.o)
-                0x00002f78                __subsf3
-                0x00002fda                __addsf3
- .text          0x00003034      0x158 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_div_sf.o)
-                0x00003034                __divsf3
- .text          0x0000318c       0x60 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_ge_sf.o)
-                0x0000318c                __gesf2
- .text          0x000031ec       0xbc c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_si_to_sf.o)
-                0x000031ec                __floatsisf
- .text          0x000032a8       0xa8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_sf_to_si.o)
-                0x000032a8                __fixsfsi
- .text          0x00003350        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_thenan_sf.o)
- .text          0x00003350        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
- .text          0x00003350        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
- .text          0x00003350       0x9e c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clzsi2.o)
-                0x00003350                __clzsi2
- .text          0x000033ee      0x1aa c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_pack_sf.o)
-                0x000033ee                __pack_f
- .text          0x00003598       0xf0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_unpack_sf.o)
-                0x00003598                __unpack_f
- .text          0x00003688       0xb2 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fpcmp_parts_sf.o)
-                0x00003688                __fpcmp_parts_f
- .text          0x0000373a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clz.o)
- .text          0x0000373a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strlen.o)
- .text          0x0000373a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
- .text          0x0000373a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
-                0x0000373a                . = ALIGN (0x2)
+                0x0000028e                stateModel
+                0x000003ca                main
+ .text          0x00000420     0x22f0 obj\Debug\RP6Lib\RP6base\RP6RobotBaseLib.o
+                0x00000420                enablePowerOnWarning
+                0x000024ea                mSleep
+                0x000008d0                __vector_1
+                0x000014b4                setMotorPower
+                0x00000602                getBumperRight
+                0x00000968                MOTIONCONTROL_stateChanged_DUMMY
+                0x000017d0                IRCOMM_RC5dataReady_DUMMY
+                0x000010b0                moveAtSpeedDirection
+                0x0000043a                disablePowerOnWarning
+                0x00000582                setLEDs
+                0x00001364                rotate
+                0x000014fc                setMotorDir
+                0x0000256a                extIntON
+                0x00001f12                powerOFF
+                0x000024c8                sleep
+                0x0000174c                __vector_3
+                0x0000044e                updateStatusLEDs
+                0x00001574                IRCOMM_sendRC5
+                0x0000252c                delayCycles
+                0x00001d0e                disableACS
+                0x00000672                BUMPERS_setStateChangedHandler
+                0x00001e5c                setACSPwrMed
+                0x000017e8                IRCOMM_setRC5DataReadyHandler
+                0x0000181a                ACS_setStateChangedHandler
+                0x000006ec                readADC
+                0x000011ce                move
+                0x000005a0                getBumperLeft
+                0x0000183e                task_ACS
+                0x00001002                moveAtSpeed
+                0x0000104a                changeDirection
+                0x00001ea2                setACSPwrHigh
+                0x00001db4                setACSPwrOff
+                0x00001e16                setACSPwrLow
+                0x0000099a                emergencyShutdown
+                0x00000696                task_Bumpers
+                0x000025be                task_RP6System
+                0x0000180c                ACS_stateChanged_DUMMY
+                0x000015e4                __vector_4
+                0x00001d60                enableACS
+                0x0000091c                __vector_2
+                0x00002594                extIntOFF
+                0x00000760                startADC
+                0x00001ee8                powerON
+                0x00000976                MOTIONCONTROL_setStateChangedHandler
+                0x00000ab6                task_motionControl
+                0x000025dc                initRobotBase
+                0x00000664                BUMPERS_stateChanged_DUMMY
+                0x00001f60                __vector_10
+                0x0000117a                stop
+                0x00001142                isMovementComplete
+                0x00000786                task_ADC
+ .text          0x00002710      0x200 obj\Debug\RP6Lib\RP6common\RP6I2CslaveTWI.o
+                0x00002748                __vector_19
+                0x00002710                I2CTWI_initSlave
+ .text          0x00002910      0x3be obj\Debug\RP6Lib\RP6common\RP6uart.o
+                0x00002b8e                readChar
+                0x00002be6                readChars
+                0x00002c6a                getBufferLength
+                0x00002c86                clearReceptionBuffer
+                0x0000293e                writeString
+                0x00002a74                writeIntegerLength
+                0x00002afe                __vector_13
+                0x00002a2a                writeInteger
+                0x00002910                writeChar
+                0x000029c8                writeStringLength
+                0x00002978                writeNStringP
+ .text          0x00002cce        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+ .text          0x00002cce        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+ .text          0x00002cce        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .text          0x00002cce        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x00002cce        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text          0x00002cce        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text          0x00002cce       0x58 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
+                0x00002cce                __fixunssfsi
+ .text          0x00002d26      0x354 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_addsub_sf.o)
+                0x00002fbe                __subsf3
+                0x00003020                __addsf3
+ .text          0x0000307a      0x158 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_div_sf.o)
+                0x0000307a                __divsf3
+ .text          0x000031d2       0x60 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_ge_sf.o)
+                0x000031d2                __gesf2
+ .text          0x00003232       0xbc c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_si_to_sf.o)
+                0x00003232                __floatsisf
+ .text          0x000032ee       0xa8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_sf_to_si.o)
+                0x000032ee                __fixsfsi
+ .text          0x00003396        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_thenan_sf.o)
+ .text          0x00003396        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+ .text          0x00003396        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+ .text          0x00003396       0x9e c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clzsi2.o)
+                0x00003396                __clzsi2
+ .text          0x00003434      0x1aa c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_pack_sf.o)
+                0x00003434                __pack_f
+ .text          0x000035de       0xf0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_unpack_sf.o)
+                0x000035de                __unpack_f
+ .text          0x000036ce       0xb2 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fpcmp_parts_sf.o)
+                0x000036ce                __fpcmp_parts_f
+ .text          0x00003780        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clz.o)
+ .text          0x00003780        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strlen.o)
+ .text          0x00003780        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
+ .text          0x00003780        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
+                0x00003780                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x0000373a       0x3e c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
-                0x0000373a                __mulsi3
- .text.libgcc   0x00003778       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x00003778                __udivmodhi4
- .text.libgcc   0x000037a0       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x000037a0                __udivmodsi4
- .text.libgcc   0x000037e4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x000037e4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x000037e4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x000037e4       0x38 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x000037e4                __prologue_saves__
- .text.libgcc   0x0000381c       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x0000381c                __epilogue_restores__
+ .text.libgcc   0x00003780       0x3e c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                0x00003780                __mulsi3
+ .text.libgcc   0x000037be       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x000037be                __udivmodhi4
+ .text.libgcc   0x000037e6       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x000037e6                __udivmodsi4
+ .text.libgcc   0x0000382a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000382a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000382a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x0000382a       0x38 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x0000382a                __prologue_saves__
+ .text.libgcc   0x00003862       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x00003862                __epilogue_restores__
  .text.avr-libc
-                0x00003852       0x12 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strlen.o)
-                0x00003852                strlen
+                0x00003898       0x12 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strlen.o)
+                0x00003898                strlen
  .text.avr-libc
-                0x00003864       0x42 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
-                0x00003864                itoa
+                0x000038aa       0x42 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
+                0x000038aa                itoa
  .text.avr-libc
-                0x000038a6       0x20 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
-                0x000038a6                strrev
-                0x000038c6                . = ALIGN (0x2)
+                0x000038ec       0x20 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
+                0x000038ec                strrev
+                0x0000390c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000038c6        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000038c6                exit
-                0x000038c6                _exit
+ .fini9         0x0000390c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000390c                exit
+                0x0000390c                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -461,11 +461,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000038c6        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000390c        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000038ca                _etext = .
+                0x00003910                _etext = .
 
-.data           0x00800060      0x114 load address 0x000038ca
+.data           0x00800060      0x114 load address 0x00003910
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -624,8 +624,8 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00800240                uart_status
                 0x00800241                uart_receive_buffer
                 0x00800262                PROVIDE (__bss_end, .)
-                0x000038ca                __data_load_start = LOADADDR (.data)
-                0x000039de                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00003910                __data_load_start = LOADADDR (.data)
+                0x00003a24                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800262        0x0
                 0x00800262                PROVIDE (__noinit_start, .)
@@ -789,24 +789,24 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .debug_abbrev  0x0000128c      0x13b c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fpcmp_parts_sf.o)
  .debug_abbrev  0x000013c7       0x6a c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clz.o)
 
-.debug_line     0x00000000     0x29f0
+.debug_line     0x00000000     0x2a30
  *(.debug_line)
- .debug_line    0x00000000      0x18d obj\Debug\main.o
- .debug_line    0x0000018d     0x15d1 obj\Debug\RP6Lib\RP6base\RP6RobotBaseLib.o
- .debug_line    0x0000175e      0x1d4 obj\Debug\RP6Lib\RP6common\RP6I2CslaveTWI.o
- .debug_line    0x00001932      0x2c5 obj\Debug\RP6Lib\RP6common\RP6uart.o
- .debug_line    0x00001bf7       0xa7 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
- .debug_line    0x00001c9e      0x2af c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_addsub_sf.o)
- .debug_line    0x00001f4d      0x1d5 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_div_sf.o)
- .debug_line    0x00002122       0xd3 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_ge_sf.o)
- .debug_line    0x000021f5      0x135 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_si_to_sf.o)
- .debug_line    0x0000232a      0x109 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_sf_to_si.o)
- .debug_line    0x00002433       0x90 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_thenan_sf.o)
- .debug_line    0x000024c3       0xa5 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clzsi2.o)
- .debug_line    0x00002568      0x18a c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_pack_sf.o)
- .debug_line    0x000026f2      0x14b c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_unpack_sf.o)
- .debug_line    0x0000283d      0x137 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fpcmp_parts_sf.o)
- .debug_line    0x00002974       0x7c c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clz.o)
+ .debug_line    0x00000000      0x1cd obj\Debug\main.o
+ .debug_line    0x000001cd     0x15d1 obj\Debug\RP6Lib\RP6base\RP6RobotBaseLib.o
+ .debug_line    0x0000179e      0x1d4 obj\Debug\RP6Lib\RP6common\RP6I2CslaveTWI.o
+ .debug_line    0x00001972      0x2c5 obj\Debug\RP6Lib\RP6common\RP6uart.o
+ .debug_line    0x00001c37       0xa7 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
+ .debug_line    0x00001cde      0x2af c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_addsub_sf.o)
+ .debug_line    0x00001f8d      0x1d5 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_div_sf.o)
+ .debug_line    0x00002162       0xd3 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_ge_sf.o)
+ .debug_line    0x00002235      0x135 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_si_to_sf.o)
+ .debug_line    0x0000236a      0x109 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_sf_to_si.o)
+ .debug_line    0x00002473       0x90 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_thenan_sf.o)
+ .debug_line    0x00002503       0xa5 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clzsi2.o)
+ .debug_line    0x000025a8      0x18a c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_pack_sf.o)
+ .debug_line    0x00002732      0x14b c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_unpack_sf.o)
+ .debug_line    0x0000287d      0x137 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fpcmp_parts_sf.o)
+ .debug_line    0x000029b4       0x7c c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clz.o)
 
 .debug_frame    0x00000000      0x5d0
  *(.debug_frame)
@@ -825,36 +825,36 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .debug_frame   0x00000590       0x20 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_unpack_sf.o)
  .debug_frame   0x000005b0       0x20 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fpcmp_parts_sf.o)
 
-.debug_str      0x00000000      0xf1e
+.debug_str      0x00000000      0xf9b
  *(.debug_str)
- .debug_str     0x00000000      0x1d4 obj\Debug\main.o
-                                0x214 (size before relaxing)
- .debug_str     0x000001d4      0x89e obj\Debug\RP6Lib\RP6base\RP6RobotBaseLib.o
+ .debug_str     0x00000000      0x1d3 obj\Debug\main.o
+                                0x213 (size before relaxing)
+ .debug_str     0x000001d3      0x91c obj\Debug\RP6Lib\RP6base\RP6RobotBaseLib.o
                                 0xa9a (size before relaxing)
- .debug_str     0x00000a72       0xea obj\Debug\RP6Lib\RP6common\RP6I2CslaveTWI.o
+ .debug_str     0x00000aef       0xea obj\Debug\RP6Lib\RP6common\RP6I2CslaveTWI.o
                                 0x1e3 (size before relaxing)
- .debug_str     0x00000b5c      0x145 obj\Debug\RP6Lib\RP6common\RP6uart.o
+ .debug_str     0x00000bd9      0x145 obj\Debug\RP6Lib\RP6common\RP6uart.o
                                 0x269 (size before relaxing)
- .debug_str     0x00000ca1       0x80 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
+ .debug_str     0x00000d1e       0x80 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
                                  0xfe (size before relaxing)
- .debug_str     0x00000d21      0x14d c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_addsub_sf.o)
+ .debug_str     0x00000d9e      0x14d c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_addsub_sf.o)
                                 0x206 (size before relaxing)
- .debug_str     0x00000e6e       0x35 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_div_sf.o)
+ .debug_str     0x00000eeb       0x35 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_div_sf.o)
                                 0x1c8 (size before relaxing)
- .debug_str     0x00000ea3        0x8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_ge_sf.o)
+ .debug_str     0x00000f20        0x8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_ge_sf.o)
                                 0x195 (size before relaxing)
- .debug_str     0x00000eab       0x1e c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_si_to_sf.o)
+ .debug_str     0x00000f28       0x1e c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_si_to_sf.o)
                                 0x17b (size before relaxing)
- .debug_str     0x00000ec9        0xa c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_sf_to_si.o)
+ .debug_str     0x00000f46        0xa c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_sf_to_si.o)
                                 0x19e (size before relaxing)
  .debug_str     0x00000000      0x103 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_thenan_sf.o)
- .debug_str     0x00000ed3       0x20 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clzsi2.o)
+ .debug_str     0x00000f50       0x20 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clzsi2.o)
                                 0x111 (size before relaxing)
- .debug_str     0x00000ef3       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_pack_sf.o)
+ .debug_str     0x00000f70       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_pack_sf.o)
                                 0x19d (size before relaxing)
- .debug_str     0x00000f03        0xb c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_unpack_sf.o)
+ .debug_str     0x00000f80        0xb c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_unpack_sf.o)
                                 0x17f (size before relaxing)
- .debug_str     0x00000f0e       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fpcmp_parts_sf.o)
+ .debug_str     0x00000f8b       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fpcmp_parts_sf.o)
                                 0x163 (size before relaxing)
  .debug_str     0x00000000       0xf4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clz.o)
 

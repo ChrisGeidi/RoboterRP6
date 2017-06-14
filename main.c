@@ -31,10 +31,12 @@ void bumperActive(void)
 {
     if (bumper_left)
     {
+        stop();
         state = BUMPER_LEFT;
     }
     if (bumper_right)
     {
+        stop();
         state = BUMPER_RIGHT;
     }
 }
@@ -44,11 +46,11 @@ void stateModel(void)
 	switch(state)
 	{
 		case IDLE:
-		    stop();
+		     stop();
 		break;
 
 		case MOVE_TO_DESTINATION:
-            move(200, FWD, DIST_MM(destination),true);
+             move(200, FWD, DIST_MM(destination),true);
 
             if(isMovementComplete())
 			{
@@ -57,17 +59,25 @@ void stateModel(void)
         break;
 
 		case BUMPER_LEFT:
+		    do{
             move(150, BWD, DIST_CM(10), true);
             rotate(150, RIGHT, 90, true); // um 180° nach links drehen
             move(150, FWD, DIST_CM(10), true);
             rotate(150, LEFT, 90, true); // um 180° nach links drehen
-            state = MOVE_TO_DESTINATION;
+            stop();
+		    }
+		    while(isMovementComplete()!=1);
 		break;
 
         case BUMPER_RIGHT:
+            do{
             move(150, BWD, DIST_CM(10), true);
             rotate(150, LEFT, 90, true); // um 180° nach links drehen
-            state = MOVE_TO_DESTINATION;
+            move(150, FWD, DIST_CM(10), true);
+            rotate(150, RIGHT, 90, true); // um 180° nach links drehen
+            stop();
+            }
+            while(isMovementComplete()!=1);
 		break;
 
 	}
@@ -87,6 +97,8 @@ int main(void)
 	{
 		stateModel();
 		task_RP6System();
+		if(isMovementComplete()==1&&state!=IDLE)
+            state = MOVE_TO_DESTINATION;
 	}
 	return 0;
 }
