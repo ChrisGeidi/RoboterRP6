@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1497429097 source:c:\users\marc töpker\netcase\01-studium\semester_4\ingenieurorientierte_programmierung\02_mitschriften\roboterrp6_hindernisse\rp6lib\rp6base\rp6robotbaselib.c
+	"RP6RobotBaseLib.h"
+
+1497429097 c:\users\marc töpker\netcase\01-studium\semester_4\ingenieurorientierte_programmierung\02_mitschriften\roboterrp6_hindernisse\rp6lib\rp6base\rp6robotbaselib.h
+	"RP6RobotBase.h"
+	"RP6Config.h"
+	"RP6uart.h"
+	<avr/sleep.h>
+	<stdlib.h>
+
+1497429097 c:\users\marc töpker\netcase\01-studium\semester_4\ingenieurorientierte_programmierung\02_mitschriften\roboterrp6_hindernisse\rp6lib\rp6base\rp6robotbase.h
+	<avr/io.h>
+	<avr/interrupt.h>
+
+1497429097 c:\users\marc töpker\netcase\01-studium\semester_4\ingenieurorientierte_programmierung\02_mitschriften\roboterrp6_hindernisse\rp6lib\rp6common\rp6config.h
+
+1497429097 c:\users\marc töpker\netcase\01-studium\semester_4\ingenieurorientierte_programmierung\02_mitschriften\roboterrp6_hindernisse\rp6lib\rp6common\rp6uart.h
+	<avr/pgmspace.h>
+	<stdlib.h>
+	<string.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+
+1497429097 source:c:\users\marc töpker\netcase\01-studium\semester_4\ingenieurorientierte_programmierung\02_mitschriften\roboterrp6_hindernisse\rp6lib\rp6common\rp6i2cslavetwi.c
+	"RP6I2CslaveTWI.h"
+
+1497429097 c:\users\marc töpker\netcase\01-studium\semester_4\ingenieurorientierte_programmierung\02_mitschriften\roboterrp6_hindernisse\rp6lib\rp6common\rp6i2cslavetwi.h
+	<stdint.h>
+	<avr/interrupt.h>
+
+1497429097 source:c:\users\marc töpker\netcase\01-studium\semester_4\ingenieurorientierte_programmierung\02_mitschriften\roboterrp6_hindernisse\rp6lib\rp6common\rp6uart.c
+	"RP6uart.h"
+
