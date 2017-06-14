@@ -36,7 +36,14 @@ struct RP6_settings
     uint8_t warning;
 } rp6_set;
 
+void bumpersStateChanged(void)
+{
+    if(bumper_left)
+    rotate(50, LEFT, 180, true);
 
+    if(bumper_right)
+    rotate(50, RIGHT, 180, true);
+}
 
 
 
@@ -50,7 +57,7 @@ int main(void)
 
     while(1)
     {
-        //
+        BUMPERS_setStateChangedHandler(bumpersStateChanged);
     }
 
     return 0;
