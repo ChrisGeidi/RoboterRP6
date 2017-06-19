@@ -1,184 +1,102 @@
+/******************************************************************************
+ *
+ * Project: Hindernisumfahrung mit dem RP6
+ * File:    main.c
+ *
+ * Ingenieurorientierte Programmierung
+ * Dr. Alexander Kling
+ *
+ * Carsten Bevermann
+ * Christoph Geitner
+ * Jens Reimer
+ * Marc Töpker
+ *
+ *****************************************************************************/
+
+//#include <avr/io.h>
 #include "RP6RobotBaseLib.h"
 
-/* define block */
+int destination = 1000;
 
-#define SPEED_FWD   80
-#define SPEED_BWD   60
-#define SPEED_ROTATE    50
-
-enum STATE
+enum state_model
 {
-	IDLE,
-	DRIVE_TARGET,
-	OBSTACLE_FWD,
-	OBSTACLE_BWD,
-	OBSTACLE_LEFT,
-	OBSTACLE_LEFT_TWO,
-	OBSTACLE_RIGHT,
-	OBSTACLE_RIGHT_TWO
-} RP6_state;
-
-/* struct für drive modes */
-typedef struct {
-	uint8_t  speed_left;
-	uint8_t  speed_right;
-	unsigned move:1;
-	uint16_t move_value;
-	uint8_t  state;
-	uint8_t  Obstacle_state;
-} drive_Mode_t;
-
-/* define drive modes */
-
-drive_Mode_t DRIVE      = {SPEED_FWD, SPEED_FWD, false, 200,DRIVE_TARGET,IDLE};
+    IDLE,
+    BUMPER_LEFT,
+    BUMPER_RIGHT,
+    MOVE_TO_DESTINATION,
+} state;
 
 
-
-void mode_Obstacle(void)
+void bumperActive(void)
 {
-    switch(RP6_state)
+    if (bumper_left)
     {
-        case IDLE:
-        break;
-
-        case DRIVE_TARGET:
-        if(DRIVE.move==false)
-        {
-            DRIVE.speed_left=50;
-            DRIVE.speed_right=50;
-            DRIVE.move=true;
-            DRIVE.move_value=1000;
-            DRIVE.state=IDLE;
-        }
-        break;
-
-        case OBSTACLE_BWD:
-        DRIVE.speed_left=50;
-        DRIVE.speed_right=50;
-        DRIVE.move=true;
-        DRIVE.move_value=200;
-
-        if(DRIVE.Obstacle_state==1)
-        DRIVE.state=OBSTACLE_RIGHT;
-        if(DRIVE.Obstacle_state==2)
-        DRIVE.state=OBSTACLE_LEFT;
-        break;
-
-        case OBSTACLE_FWD:
-        if(DRIVE.move==false)
-        {
-            DRIVE.speed_left=50;
-            DRIVE.speed_right=50;
-            DRIVE.move=true;
-            DRIVE.move_value=400;
-
-            if(DRIVE.Obstacle_state==1)
-            DRIVE.state=OBSTACLE_RIGHT_TWO;
-            if(DRIVE.Obstacle_state==2)
-            DRIVE.state=OBSTACLE_LEFT_TWO;
-        }
-        break;
-
-        case OBSTACLE_RIGHT:
-        if(DRIVE.move==false)
-        {
-            DRIVE.speed_left=50;
-            DRIVE.speed_right=50;
-            DRIVE.move=true;
-            DRIVE.move_value=0;
-            DRIVE.state=OBSTACLE_FWD;
-        }
-        break;
-
-        case OBSTACLE_LEFT:
-        if(DRIVE.move==false)
-        {
-            DRIVE.speed_left=50;
-            DRIVE.speed_right=50;
-            DRIVE.move=true;
-            DRIVE.move_value=0;
-            DRIVE.state=OBSTACLE_FWD;
-        }
-
-        break;
-
-        case OBSTACLE_LEFT_TWO:
-        if(DRIVE.move==false)
-        {
-            DRIVE.speed_left=50;
-            DRIVE.speed_right=50;
-            DRIVE.move=true;
-            DRIVE.move_value=0;
-            DRIVE.state=DRIVE_TARGET;
-        }
-
-        break;
-
-        case OBSTACLE_RIGHT_TWO:
-        if(DRIVE.move==false)
-        {
-            DRIVE.speed_left=50;
-            DRIVE.speed_right=50;
-            DRIVE.move=true;
-            DRIVE.move_value=0;
-            DRIVE.state=DRIVE_TARGET;
-        }
-        break;
+        state = BUMPER_LEFT;
+    }
+    if (bumper_right)
+    {
+        state = BUMPER_RIGHT;
     }
 }
 
-
-void bumpersStateChanged(void)
+void stateModel(void)
 {
+	switch(state)
+	{
+		case IDLE:
+		    stop();
+		break;
 
-	if(bumper_left)
-    {
-        RP6_state=OBSTACLE_BWD;
-        DRIVE.Obstacle_state=1;
-    }
-    if(bumper_right)
-    {
-        RP6_state=OBSTACLE_BWD;
-        DRIVE.Obstacle_state=2;
-    }
+		case MOVE_TO_DESTINATION:
+            move(100, FWD, DIST_MM(destination),true);
+
+            if(isMovementComplete())
+			{
+                state = IDLE;
+			}
+        break;
+
+		case BUMPER_LEFT:
+		    destination = DIST_MM(getLeftDistance());
+            move(150, BWD, DIST_CM(10), true);
+            rotate(150, RIGHT, 90, true); // um 180° nach links drehen
+            move(150, FWD, DIST_CM(10), true);
+            rotate(150, LEFT, 90, true); // um 180° nach links drehen
+            move(150, FWD, DIST_CM(10), true);
+            rotate(150, LEFT, 90, true); // um 180° nach links drehen
+            move(150, FWD, DIST_CM(10), true);
+            rotate(150, RIGHT, 90, true); // um 180° nach links drehen
+
+            state = MOVE_TO_DESTINATION;
+		break;
+
+        case BUMPER_RIGHT:
+            destination = DIST_MM(getLeftDistance());
+            move(150, BWD, DIST_CM(10), true);
+            rotate(150, LEFT, 90, true); // um 180° nach links drehen
+            move(150, FWD, DIST_CM(10), true);
+            rotate(150, RIGHT, 90, true); // um 180° nach links drehen
+            move(150, FWD, DIST_CM(10), true);
+            rotate(150, RIGHT, 90, true); // um 180° nach links drehen
+            move(150, FWD, DIST_CM(10), true);
+            rotate(150, LEFT, 90, true); // um 180° nach links drehen
+
+            state = MOVE_TO_DESTINATION;
+
+		break;
+
+	}
 }
-
-void stateModel()
-{
-    mode_Obstacle();
-
-    if(DRIVE.state==IDLE)
-        stop();
-
-    if(DRIVE.state==OBSTACLE_FWD||DRIVE.state==DRIVE_TARGET)
-        {move(DRIVE.speed_left,FWD,DRIVE.move_value,true);
-        stop();}
-
-    if(DRIVE.state==OBSTACLE_BWD)
-        {move(DRIVE.speed_left,BWD,DRIVE.move_value,true);
-        stop();}
-
-    if(DRIVE.state==OBSTACLE_LEFT_TWO||DRIVE.state==OBSTACLE_RIGHT)
-        {rotate(DRIVE.speed_left,LEFT,90,true);
-        stop();}
-
-    if(DRIVE.state==OBSTACLE_LEFT||DRIVE.state==OBSTACLE_RIGHT_TWO)
-        {rotate(DRIVE.speed_left,RIGHT,90,true);
-         stop();}
-
-    if(isMovementComplete())
-        DRIVE.move=false;
-}
-
 
 int main(void)
 {
 	initRobotBase();
-	mSleep(2500);
-
-	BUMPERS_setStateChangedHandler(bumpersStateChanged);
-
+	mSleep(1000);
 	powerON();
+
+	//initial value
+    state = MOVE_TO_DESTINATION;
+    BUMPERS_setStateChangedHandler(bumperActive);
 
 	while(true)
 	{
@@ -187,3 +105,5 @@ int main(void)
 	}
 	return 0;
 }
+
+/******************** End of file <main.c> ***********************************/
