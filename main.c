@@ -48,63 +48,20 @@ void mode_Drive(void)
 
 void mode_Obstacle(void)
 {
-	static uint8_t bump_count = 0;
 	switch(OBSTACLE.state)
 	{
 		// nichts machen
 		case IDLE:
 		break;
 
-
-		// beide bumper aktiviert
-		case FRONT_START:
-			OBSTACLE.speed_left = obstacle_SPEED_BWD;
-			OBSTACLE.dir = BWD;
-			OBSTACLE.move = true;
-
-			if(bump_count > 3)
-				OBSTACLE.move_value = 180;
-			else
-				OBSTACLE.move_value = 120;
-			OBSTACLE.state = FRONT_WAIT;
-			bump_count+=2;
-		break;
-
-		// Fahrparameter an obstacle übergeben
-		case FRONT_WAIT:
-			if(!OBSTACLE.move)
-			{
-				OBSTACLE.speed_left = obstacle_SPEED_ROTATE;
-				if(bump_count > 3)
-				{
-					OBSTACLE.move_value = 90;
-					OBSTACLE.dir = RIGHT;
-					bump_count = 0;
-				}
-				else
-				{
-					OBSTACLE.dir = LEFT;
-					OBSTACLE.move_value = 50;
-				}
-				OBSTACLE.rotate = true;
-				OBSTACLE.state = WAIT_END;
-			}
-		break;
-
-
 		// linker bumper aktiviert
 		case LEFT_START:
 			OBSTACLE.speed_left = obstacle_SPEED_BWD;
 			OBSTACLE.dir 	= BWD;
 			OBSTACLE.move = true;
-			if(bump_count > 3)
-				OBSTACLE.move_value = 160;
-			else
-				OBSTACLE.move_value = 100;
+            OBSTACLE.move_value = 160;
 			OBSTACLE.state = LEFT_WAIT;
-			bump_count++;
 		break;
-
 
 		// Fahrparameter an obstacle übergeben
 		case LEFT_WAIT:
@@ -113,13 +70,7 @@ void mode_Obstacle(void)
 				OBSTACLE.speed_left = obstacle_SPEED_ROTATE;
 				OBSTACLE.dir = RIGHT;
 				OBSTACLE.rotate = true;
-				if(bump_count > 3)
-				{
-					OBSTACLE.move_value = 80;
-					bump_count = 0;
-				}
-				else
-					OBSTACLE.move_value = 45;
+                OBSTACLE.move_value = 80;
 				OBSTACLE.state = WAIT_END;
 			}
 		break;
@@ -129,12 +80,8 @@ void mode_Obstacle(void)
 			OBSTACLE.speed_left = obstacle_SPEED_BWD;
 			OBSTACLE.dir 	= BWD;
 			OBSTACLE.move = true;
-			if(bump_count > 3)
-				OBSTACLE.move_value = 160;
-			else
-				OBSTACLE.move_value = 100;
+            OBSTACLE.move_value = 160;
 			OBSTACLE.state = RIGHT_WAIT;
-			bump_count++;
 		break;
 
 
@@ -145,13 +92,7 @@ void mode_Obstacle(void)
 				OBSTACLE.speed_left = obstacle_SPEED_ROTATE;
 				OBSTACLE.dir = LEFT;
 				OBSTACLE.rotate = true;
-				if(bump_count > 3)
-				{
-					OBSTACLE.move_value = 80;
-					bump_count = 0;
-				}
-				else
-					OBSTACLE.move_value = 45;
+                OBSTACLE.move_value = 80;
 				OBSTACLE.state = WAIT_END;
 			}
 		break;
