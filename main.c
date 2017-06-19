@@ -1,166 +1,175 @@
-// Uncommented Version of RP6Base_Move_04.c
-// written by Dominik S. Herwald
-// ------------------------------------------------------------------------------------------
-
 #include "RP6RobotBaseLib.h"
 
 /* define block */
 
-#define CRUISE_SPEED_FWD    	80
-#define obstacle_SPEED_BWD    	60
-#define obstacle_SPEED_ROTATE 	50
+#define SPEED_FWD   80
+#define SPEED_BWD   60
+#define SPEED_ROTATE    50
 
 enum STATE
 {
 	IDLE,
-	MOVE,
-	FRONT_START,
-    FRONT_WAIT ,
-	LEFT_START ,
-	LEFT_WAIT	,
-	RIGHT_START,
-	RIGHT_WAIT ,
-	WAIT_END
-} state;
+	DRIVE_TARGET,
+	OBSTACLE_FWD,
+	OBSTACLE_BWD,
+	OBSTACLE_LEFT,
+	OBSTACLE_LEFT_TWO,
+	OBSTACLE_RIGHT,
+	OBSTACLE_RIGHT_TWO
+} RP6_state;
 
 /* struct für drive modes */
 typedef struct {
 	uint8_t  speed_left;
 	uint8_t  speed_right;
-	unsigned dir:2;
 	unsigned move:1;
-	unsigned rotate:1;
 	uint16_t move_value;
 	uint8_t  state;
+	uint8_t  Obstacle_state;
 } drive_Mode_t;
 
 /* define drive modes */
 
-drive_Mode_t DRIVE      = {CRUISE_SPEED_FWD, CRUISE_SPEED_FWD, FWD, false, false, 0, MOVE};
-drive_Mode_t OBSTACLE 	= {0, 0, FWD, false, false, 0, IDLE};
-drive_Mode_t STOP 		= {0, 0, FWD, false, false, 0, IDLE};
+drive_Mode_t DRIVE      = {SPEED_FWD, SPEED_FWD, false, 200,DRIVE_TARGET,IDLE};
 
 
-
-void mode_Drive(void)
-{
-}
 
 void mode_Obstacle(void)
 {
-	switch(OBSTACLE.state)
-	{
-		// nichts machen
-		case IDLE:
-		break;
+    switch(RP6_state)
+    {
+        case IDLE:
+        break;
 
-		// linker bumper aktiviert
-		case LEFT_START:
-			OBSTACLE.speed_left = obstacle_SPEED_BWD;
-			OBSTACLE.dir 	= BWD;
-			OBSTACLE.move = true;
-            OBSTACLE.move_value = 160;
-			OBSTACLE.state = LEFT_WAIT;
-		break;
+        case DRIVE_TARGET:
+        if(DRIVE.move==false)
+        {
+            DRIVE.speed_left=50;
+            DRIVE.speed_right=50;
+            DRIVE.move=true;
+            DRIVE.move_value=1000;
+            DRIVE.state=IDLE;
+        }
+        break;
 
-		// Fahrparameter an obstacle übergeben
-		case LEFT_WAIT:
-			if(!OBSTACLE.move)
-			{
-				OBSTACLE.speed_left = obstacle_SPEED_ROTATE;
-				OBSTACLE.dir = RIGHT;
-				OBSTACLE.rotate = true;
-                OBSTACLE.move_value = 80;
-				OBSTACLE.state = WAIT_END;
-			}
-		break;
+        case OBSTACLE_BWD:
+        DRIVE.speed_left=50;
+        DRIVE.speed_right=50;
+        DRIVE.move=true;
+        DRIVE.move_value=200;
 
-		// rechter bumper aktiviert
-		case RIGHT_START:
-			OBSTACLE.speed_left = obstacle_SPEED_BWD;
-			OBSTACLE.dir 	= BWD;
-			OBSTACLE.move = true;
-            OBSTACLE.move_value = 160;
-			OBSTACLE.state = RIGHT_WAIT;
-		break;
+        if(DRIVE.Obstacle_state==1)
+        DRIVE.state=OBSTACLE_RIGHT;
+        if(DRIVE.Obstacle_state==2)
+        DRIVE.state=OBSTACLE_LEFT;
+        break;
 
+        case OBSTACLE_FWD:
+        if(DRIVE.move==false)
+        {
+            DRIVE.speed_left=50;
+            DRIVE.speed_right=50;
+            DRIVE.move=true;
+            DRIVE.move_value=400;
 
-		// Fahrparameter an obstacle übergeben
-		case RIGHT_WAIT:
-			if(!OBSTACLE.move)
-			{
-				OBSTACLE.speed_left = obstacle_SPEED_ROTATE;
-				OBSTACLE.dir = LEFT;
-				OBSTACLE.rotate = true;
-                OBSTACLE.move_value = 80;
-				OBSTACLE.state = WAIT_END;
-			}
-		break;
+            if(DRIVE.Obstacle_state==1)
+            DRIVE.state=OBSTACLE_RIGHT_TWO;
+            if(DRIVE.Obstacle_state==2)
+            DRIVE.state=OBSTACLE_LEFT_TWO;
+        }
+        break;
 
+        case OBSTACLE_RIGHT:
+        if(DRIVE.move==false)
+        {
+            DRIVE.speed_left=50;
+            DRIVE.speed_right=50;
+            DRIVE.move=true;
+            DRIVE.move_value=0;
+            DRIVE.state=OBSTACLE_FWD;
+        }
+        break;
 
-		// Move Parameter ausgeführt, Modus IDLE aktivieren
-		case WAIT_END:
-			if(!(OBSTACLE.move || OBSTACLE.rotate))
-				OBSTACLE.state = IDLE;
-		break;
-	}
+        case OBSTACLE_LEFT:
+        if(DRIVE.move==false)
+        {
+            DRIVE.speed_left=50;
+            DRIVE.speed_right=50;
+            DRIVE.move=true;
+            DRIVE.move_value=0;
+            DRIVE.state=OBSTACLE_FWD;
+        }
+
+        break;
+
+        case OBSTACLE_LEFT_TWO:
+        if(DRIVE.move==false)
+        {
+            DRIVE.speed_left=50;
+            DRIVE.speed_right=50;
+            DRIVE.move=true;
+            DRIVE.move_value=0;
+            DRIVE.state=DRIVE_TARGET;
+        }
+
+        break;
+
+        case OBSTACLE_RIGHT_TWO:
+        if(DRIVE.move==false)
+        {
+            DRIVE.speed_left=50;
+            DRIVE.speed_right=50;
+            DRIVE.move=true;
+            DRIVE.move_value=0;
+            DRIVE.state=DRIVE_TARGET;
+        }
+        break;
+    }
 }
+
 
 void bumpersStateChanged(void)
 {
-	if(bumper_left && bumper_right)
-	{
-		OBSTACLE.state = FRONT_START;
-	}
-	else if(bumper_left)
-	{
-		if(OBSTACLE.state != FRONT_WAIT)
-			OBSTACLE.state = LEFT_START;
-	}
-	else if(bumper_right)
-	{
-		if(OBSTACLE.state != FRONT_WAIT)
-			OBSTACLE.state = RIGHT_START;
-	}
+
+	if(bumper_left)
+    {
+        RP6_state=OBSTACLE_BWD;
+        DRIVE.Obstacle_state=1;
+    }
+    if(bumper_right)
+    {
+        RP6_state=OBSTACLE_BWD;
+        DRIVE.Obstacle_state=2;
+    }
 }
 
-void driveCMD(drive_Mode_t * cmd)
+void stateModel()
 {
-	if(cmd->move_value > 0)
-	{
-		if(cmd->rotate)
-			rotate(cmd->speed_left, cmd->dir, cmd->move_value, false);
-		else if(cmd->move)
-			move(cmd->speed_left, cmd->dir, DIST_MM(cmd->move_value), false);
-		cmd->move_value = 0;
-	}
-	else if(!(cmd->move || cmd->rotate))
-	{
-		changeDirection(cmd->dir);
-		moveAtSpeed(cmd->speed_left,cmd->speed_right);
-	}
-	else if(isMovementComplete())
-	{
-		cmd->rotate = false;
-		cmd->move = false;
-	}
+    mode_Obstacle();
+
+    if(DRIVE.state==IDLE)
+        stop();
+
+    if(DRIVE.state==OBSTACLE_FWD||DRIVE.state==DRIVE_TARGET)
+        {move(DRIVE.speed_left,FWD,DRIVE.move_value,true);
+        stop();}
+
+    if(DRIVE.state==OBSTACLE_BWD)
+        {move(DRIVE.speed_left,BWD,DRIVE.move_value,true);
+        stop();}
+
+    if(DRIVE.state==OBSTACLE_LEFT_TWO||DRIVE.state==OBSTACLE_RIGHT)
+        {rotate(DRIVE.speed_left,LEFT,90,true);
+        stop();}
+
+    if(DRIVE.state==OBSTACLE_LEFT||DRIVE.state==OBSTACLE_RIGHT_TWO)
+        {rotate(DRIVE.speed_left,RIGHT,90,true);
+         stop();}
+
+    if(isMovementComplete())
+        DRIVE.move=false;
 }
 
-
-void stateModel(void)
-{
-	mode_Drive();
-	mode_Obstacle();
-
-	// Hindernis oder Fahrmodus
-	if(OBSTACLE.state != IDLE)
-		driveCMD(&OBSTACLE);
-	else if(DRIVE.state != IDLE)
-		driveCMD(&DRIVE);
-	// Stop
-	else
-		driveCMD(&STOP);
-}
 
 int main(void)
 {
