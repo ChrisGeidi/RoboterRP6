@@ -16,7 +16,12 @@
 //#include <avr/io.h>
 #include "RP6RobotBaseLib.h"
 
-int destination = 1000;
+#define speedfwd 399
+#define angle 50
+#define dist 20
+
+
+int destination = DIST_MM(100);
 
 enum state_model
 {
@@ -48,7 +53,7 @@ void stateModel(void)
 		break;
 
 		case MOVE_TO_DESTINATION:
-            move(100, FWD, DIST_MM(destination),true);
+            move(speedfwd, FWD, destination,true);
 
             if(isMovementComplete())
 			{
@@ -58,28 +63,28 @@ void stateModel(void)
 
 		case BUMPER_LEFT:
 		    destination = DIST_MM(getLeftDistance());
-            move(150, BWD, DIST_CM(10), true);
-            rotate(150, RIGHT, 90, true); // um 180° nach links drehen
-            move(150, FWD, DIST_CM(10), true);
-            rotate(150, LEFT, 90, true); // um 180° nach links drehen
-            move(150, FWD, DIST_CM(10), true);
-            rotate(150, LEFT, 90, true); // um 180° nach links drehen
-            move(150, FWD, DIST_CM(10), true);
-            rotate(150, RIGHT, 90, true); // um 180° nach links drehen
+            move(speedfwd, BWD, DIST_CM(dist), true);
+            rotate(speedfwd, RIGHT, angle, true); // um 180° nach links drehen
+            move(speedfwd, FWD, DIST_CM(dist), true);
+            rotate(speedfwd, LEFT, angle, true); // um 180° nach links drehen
+            move(speedfwd, FWD, DIST_CM(dist), true);
+            rotate(speedfwd, LEFT, angle, true); // um 180° nach links drehen
+            move(speedfwd, FWD, DIST_CM(dist), true);
+            rotate(speedfwd, RIGHT, angle, true); // um 180° nach links drehen
 
             state = MOVE_TO_DESTINATION;
 		break;
 
         case BUMPER_RIGHT:
             destination = DIST_MM(getLeftDistance());
-            move(150, BWD, DIST_CM(10), true);
-            rotate(150, LEFT, 90, true); // um 180° nach links drehen
-            move(150, FWD, DIST_CM(10), true);
-            rotate(150, RIGHT, 90, true); // um 180° nach links drehen
-            move(150, FWD, DIST_CM(10), true);
-            rotate(150, RIGHT, 90, true); // um 180° nach links drehen
-            move(150, FWD, DIST_CM(10), true);
-            rotate(150, LEFT, 90, true); // um 180° nach links drehen
+            move(speedfwd, BWD, DIST_CM(dist), true);
+            rotate(speedfwd, LEFT, angle, true); // um 90° nach links drehen
+            move(speedfwd, FWD, DIST_CM(dist), true);
+            rotate(speedfwd, RIGHT, angle, true); // um 180° nach links drehen
+            move(speedfwd, FWD, DIST_CM(dist), true);
+            rotate(speedfwd, RIGHT, angle, true); // um 180° nach links drehen
+            move(speedfwd, FWD, DIST_CM(dist), true);
+            rotate(speedfwd, LEFT, angle, true); // um 180° nach links drehen
 
             state = MOVE_TO_DESTINATION;
 
@@ -100,6 +105,7 @@ int main(void)
 
 	while(true)
 	{
+	    bumperActive();
 		stateModel();
 		task_RP6System();
 	}
